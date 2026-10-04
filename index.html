@@ -22,7 +22,6 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{background:var(--night);color:var(--ivory);font-family:var(--sans);min-height:100dvh;display:flex;justify-content:center;padding:28px 14px 96px;overflow-x:hidden}
-body:not(.open){overflow:hidden;height:100dvh}
 :focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
 
 .bg{position:fixed;inset:0;z-index:0;background:
@@ -30,27 +29,6 @@ body:not(.open){overflow:hidden;height:100dvh}
   radial-gradient(ellipse at 50% 100%,#0a2f33 0%,transparent 70%),var(--night)}
 .bg::after{content:"";position:absolute;inset:0;background:var(--star);opacity:.7}
 #dust{position:fixed;inset:0;z-index:3;pointer-events:none}
-
-/* ---------- Doors (the one memorable moment) ---------- */
-.intro[hidden]{display:none}
-.intro.opening{pointer-events:none}
-.intro{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center}
-.door{position:absolute;top:0;bottom:0;width:50.2%;background:var(--star),linear-gradient(#0b3b3f,#062226);
-  border:1px solid var(--gold);box-shadow:inset 0 0 0 8px var(--night),inset 0 0 0 9px rgba(201,162,75,.55);
-  transition:transform 1.7s cubic-bezier(.7,0,.2,1)}
-.door.l{left:0;transform-origin:left;border-right-width:2px}
-.door.r{right:0;transform-origin:right;border-left-width:2px}
-.intro.opening .door.l{transform:translateX(-102%)}
-.intro.opening .door.r{transform:translateX(102%)}
-.seal-wrap{position:relative;z-index:2;text-align:center;transition:opacity .5s,transform .8s}
-.intro.opening .seal-wrap{opacity:0;transform:scale(1.4)}
-.seal{width:96px;height:96px;border-radius:50%;border:1px solid var(--gold-l);cursor:pointer;color:var(--night);
-  background:radial-gradient(circle at 35% 30%,var(--gold-l),var(--gold) 60%,#8c6b1f);
-  box-shadow:0 0 0 8px rgba(201,162,75,.15),0 10px 40px rgba(0,0,0,.6);display:grid;place-items:center;animation:breathe 2.6s ease-in-out infinite}
-.seal svg{width:54px;height:54px}
-.seal-note{margin-top:22px;font-family:var(--serif);font-size:17px;color:var(--gold-l);line-height:1.5}
-.seal-note small{display:block;font:300 12px var(--sans);color:var(--muted);margin-top:4px}
-@keyframes breathe{50%{box-shadow:0 0 0 18px rgba(201,162,75,.05),0 10px 40px rgba(0,0,0,.6)}}
 
 /* ---------- Card ---------- */
 main{position:relative;z-index:2;width:100%;max-width:420px}
@@ -65,7 +43,7 @@ main{position:relative;z-index:2;width:100%;max-width:420px}
 .sub{font-size:14px;letter-spacing:.06em;color:var(--turq);font-weight:500}
 h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margin:6px 0 4px;
   background:linear-gradient(100deg,#b88a2a 10%,#fff3c4 45%,#c9a24b 60%,#b88a2a 90%);background-size:220% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out 2.4s infinite}
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out 1s infinite}
 @keyframes shine{0%,60%,100%{background-position:100% 0}30%{background-position:0 0}}
 .rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0}
 .rule i{height:1px;width:56px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
@@ -100,7 +78,7 @@ h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margi
 .sign{margin-top:34px;font-size:13px;color:var(--muted)}
 .sign strong{display:block;font:700 23px var(--serif);color:var(--gold-l);margin-top:6px}
 
-.pre{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+.pre{opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .4s ease}
 body.open .pre{opacity:1;transform:none}
 
 /* ---------- Music ---------- */
@@ -108,9 +86,11 @@ body.open .pre{opacity:1;transform:none}
   border:1.5px solid var(--gold);background:rgba(7,38,41,.92);color:var(--gold);display:none;place-items:center;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.6)}
 body.open .music{display:grid}
 .music[hidden]{display:none!important}
+.music:not(.on){animation:pulse 1.8s ease-in-out infinite}
 .music.on{background:var(--gold);color:var(--night)}
 .music.on svg{animation:spin 7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 6px 24px rgba(0,0,0,.6),0 0 0 0 rgba(201,162,75,.55)}50%{box-shadow:0 6px 24px rgba(0,0,0,.6),0 0 0 12px rgba(201,162,75,0)}}
 
 @media (max-width:360px){h1{font-size:38px}.card{padding-inline:16px}}
 @media (prefers-reduced-motion:reduce){
@@ -122,18 +102,8 @@ body.open .music{display:grid}
 <body>
 <div class="bg"></div>
 <canvas id="dust" aria-hidden="true"></canvas>
-<!-- Музыка встроена в файл. Чтобы заменить: src="music/bg.mp3" и положите свой mp3 в папку music -->
-<audio id="bg" loop preload="auto" src="/dombyra-syrlasu-valsy_(mufm.me).mp3"></audio>
-<!-- Doors -->
-<div class="intro" id="intro">
-  <div class="door l"></div><div class="door r"></div>
-  <div class="seal-wrap">
-    <button class="seal" id="open" aria-label="Очиш / Открыть">
-      <svg viewBox="0 0 60 60" fill="currentColor" aria-hidden="true"><path d="M30 2l5.5 14.5L50 10l-6.5 14.5L58 30l-14.5 5.5L50 50l-14.5-6.5L30 58l-5.5-14.5L10 50l6.5-14.5L2 30l14.5-5.5L10 10l14.5 6.5z"/><circle cx="30" cy="30" r="7" fill="#c9a24b"/></svg>
-    </button>
-    <p class="seal-note">Таклифномани очиш<small>Нажмите, чтобы открыть приглашение</small></p>
-  </div>
-</div>
+<!-- Музыка: положите mp3 рядом с index.html. Рекомендуется имя без пробелов и скобок, например music.mp3 -->
+<audio id="bg" loop preload="auto" playsinline src="/dombyra-syrlasu-valsy_(mufm.me).mp3"></audio>
 
 <button class="music" id="musicBtn" aria-label="Музыка / Music" aria-pressed="false" hidden>
   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></svg>
@@ -279,8 +249,14 @@ function tick(){
 }
 setInterval(tick,1000);
 
-/* Music with fade */
-const audio = $("bg"), mBtn = $("musicBtn"); let fadeT, playing=false; const MAXV=.45;
+/* ===== Music =====
+   Браузеры (особенно на телефонах) не разрешают звук без касания.
+   Поэтому: 1) сразу запускаем трек БЕЗ звука (это разрешено) и держим его "тёплым";
+            2) при ПЕРВОМ касании мгновенно включаем звук с плавным нарастанием. */
+const audio = $("bg"), mBtn = $("musicBtn");
+let fadeT, playing=false, userPaused=false; const MAXV=.45;
+audio.muted = true;
+
 function fade(to, done){
   clearInterval(fadeT);
   fadeT = setInterval(()=>{
@@ -289,13 +265,39 @@ function fade(to, done){
     if(Math.abs(audio.volume-to)<.03){ audio.volume=to; clearInterval(fadeT); done&&done(); }
   },80);
 }
-function play(){ audio.volume=0; audio.play().then(()=>{ playing=true; ui(); fade(MAXV); }).catch(()=>{}); }
-function pause(){ playing=false; ui(); fade(0,()=>audio.pause()); }
 function ui(){ mBtn.classList.toggle("on",playing); mBtn.setAttribute("aria-pressed",playing); }
-mBtn.onclick = ()=> playing ? pause() : play();
+
+/* Включить звук (вызывать только из жеста пользователя) */
+function startAudible(){
+  audio.volume = 0;
+  audio.muted = false;
+  const p = audio.play();
+  return (p && p.then ? p : Promise.resolve()).then(()=>{ playing=true; ui(); fade(MAXV); });
+}
+function pause(){ playing=false; ui(); fade(0,()=>audio.pause()); }
+
+mBtn.onclick = ()=>{
+  if(playing){ userPaused=true; pause(); }
+  else { userPaused=false; startAudible().catch(()=>{}); }
+};
 audio.addEventListener("error",()=>{ mBtn.hidden=true; });
 audio.addEventListener("loadedmetadata",()=>{ mBtn.hidden=false; });
-document.addEventListener("visibilitychange",()=>{ if(document.hidden && playing) audio.pause(); else if(playing) audio.play().catch(()=>{}); });
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden){ audio.pause(); }
+  else if(playing){ audio.play().catch(()=>{}); }
+});
+
+/* Шаг 1: беззвучный запуск сразу при загрузке */
+audio.play().catch(()=>{});
+
+/* Шаг 2: первое касание — включаем звук */
+const EVS=["pointerup","touchend","click","keydown"];
+function unlock(e){
+  if(userPaused || playing) return;
+  if(e.target && e.target.closest && e.target.closest("#musicBtn")) return; /* кнопка сама обработает */
+  startAudible().then(()=>EVS.forEach(ev=>removeEventListener(ev,unlock))).catch(()=>{});
+}
+EVS.forEach(ev=>addEventListener(ev,unlock,{passive:true}));
 
 /* One continuous arch-shaped card (no seams) */
 (function(){
@@ -320,14 +322,8 @@ document.addEventListener("visibilitychange",()=>{ if(document.hidden && playing
   new ResizeObserver(build).observe(shell); build();
 })();
 
-/* Open doors */
-$("open").onclick = ()=>{
-  $("intro").classList.add("opening");
-  document.body.classList.add("open");
-  document.querySelectorAll(".pre").forEach((el,i)=>el.style.transitionDelay = (0.9+i*0.1)+"s");
-  play();
-  setTimeout(()=>{ $("intro").hidden = true; document.querySelectorAll(".pre").forEach(el=>el.style.transitionDelay="0s"); },2000);
-};
+/* Приглашение показывается сразу при загрузке */
+requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add("open")));
 
 /* Floating moons, stars and gold dust */
 (function(){
