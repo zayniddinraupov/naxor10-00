@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Таклифнома / Приглашение — Юсуповлар оиласи</title>
+<meta name="description" content="Наҳор оши · 7 октябрь 2026 · 10:00 · Самарқанд">
+<meta property="og:title" content="Таклифнома — Наҳор оши">
+<meta property="og:description" content="7 октябрь 2026, 10:00 · Самарқанд · Юсуповлар оиласи">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#062226">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Noto+Serif:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#062226; --teal:#0d3c40; --turq:#2bb3aa; --gold:#c9a24b; --gold-l:#f1dc9a;
+  --ivory:#f6efdc; --glass:#072629; --muted:#9fc0bb; --pom:#9b2342;
+  --serif:'Noto Serif',Georgia,serif; --sans:'Montserrat',system-ui,sans-serif;
+  --star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cg fill='none' stroke='%23c9a24b' stroke-opacity='.28'%3E%3Crect x='14' y='14' width='32' height='32'/%3E%3Crect x='14' y='14' width='32' height='32' transform='rotate(45 30 30)'/%3E%3Ccircle cx='30' cy='30' r='6'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ivory);font-family:var(--sans);min-height:100dvh;display:flex;justify-content:center;padding:28px 14px 96px;overflow-x:hidden}
+body:not(.open){overflow:hidden;height:100dvh}
+:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
+
+.bg{position:fixed;inset:0;z-index:0;background:
+  radial-gradient(ellipse at 50% 0%,#14595a 0%,transparent 60%),
+  radial-gradient(ellipse at 50% 100%,#0a2f33 0%,transparent 70%),var(--night)}
+.bg::after{content:"";position:absolute;inset:0;background:var(--star);opacity:.7}
+#dust{position:fixed;inset:0;z-index:3;pointer-events:none}
+
+/* ---------- Doors (the one memorable moment) ---------- */
+.intro[hidden]{display:none}
+.intro.opening{pointer-events:none}
+.intro{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center}
+.door{position:absolute;top:0;bottom:0;width:50.2%;background:var(--star),linear-gradient(#0b3b3f,#062226);
+  border:1px solid var(--gold);box-shadow:inset 0 0 0 8px var(--night),inset 0 0 0 9px rgba(201,162,75,.55);
+  transition:transform 1.7s cubic-bezier(.7,0,.2,1)}
+.door.l{left:0;transform-origin:left;border-right-width:2px}
+.door.r{right:0;transform-origin:right;border-left-width:2px}
+.intro.opening .door.l{transform:translateX(-102%)}
+.intro.opening .door.r{transform:translateX(102%)}
+.seal-wrap{position:relative;z-index:2;text-align:center;transition:opacity .5s,transform .8s}
+.intro.opening .seal-wrap{opacity:0;transform:scale(1.4)}
+.seal{width:96px;height:96px;border-radius:50%;border:1px solid var(--gold-l);cursor:pointer;color:var(--night);
+  background:radial-gradient(circle at 35% 30%,var(--gold-l),var(--gold) 60%,#8c6b1f);
+  box-shadow:0 0 0 8px rgba(201,162,75,.15),0 10px 40px rgba(0,0,0,.6);display:grid;place-items:center;animation:breathe 2.6s ease-in-out infinite}
+.seal svg{width:54px;height:54px}
+.seal-note{margin-top:22px;font-family:var(--serif);font-size:17px;color:var(--gold-l);line-height:1.5}
+.seal-note small{display:block;font:300 12px var(--sans);color:var(--muted);margin-top:4px}
+@keyframes breathe{50%{box-shadow:0 0 0 18px rgba(201,162,75,.05),0 10px 40px rgba(0,0,0,.6)}}
+
+/* ---------- Card ---------- */
+main{position:relative;z-index:2;width:100%;max-width:420px}
+.lang{display:flex;justify-content:flex-end;margin-bottom:14px}
+.lang div{display:flex;gap:2px;padding:3px;border:1px solid rgba(201,162,75,.3);border-radius:20px;background:rgba(0,0,0,.3)}
+.lang button{border:0;background:none;color:var(--muted);font:600 12px var(--sans);padding:7px 13px;min-height:32px;border-radius:14px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--gold);color:#1b1500}
+
+.shellwrap{filter:drop-shadow(0 30px 34px rgba(0,0,0,.5))}
+.card{position:relative;background:var(--glass);padding:calc(37.5% + 6px) 24px 34px;text-align:center}
+.frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.sub{font-size:14px;letter-spacing:.06em;color:var(--turq);font-weight:500}
+h1{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1.1;margin:6px 0 4px;
+  background:linear-gradient(100deg,#b88a2a 10%,#fff3c4 45%,#c9a24b 60%,#b88a2a 90%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s ease-in-out 2.4s infinite}
+@keyframes shine{0%,60%,100%{background-position:100% 0}30%{background-position:0 0}}
+.rule{display:flex;align-items:center;justify-content:center;gap:10px;margin:18px 0}
+.rule i{height:1px;width:56px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.rule b{width:7px;height:7px;background:var(--gold);transform:rotate(45deg)}
+.greet{font-family:var(--serif);font-size:20px;color:var(--gold-l);margin-bottom:10px;overflow-wrap:anywhere}
+.text{font-size:14.5px;line-height:1.75;font-weight:300;color:#e8e4d4;max-width:34ch;margin:0 auto 26px}
+
+.info{text-align:left;border:1px solid rgba(201,162,75,.2);background:rgba(0,0,0,.22);border-radius:14px;padding:6px 16px;margin-bottom:26px}
+.row{display:flex;gap:14px;align-items:center;padding:12px 0}
+.row+.row{border-top:1px solid rgba(201,162,75,.15)}
+.ico{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,162,75,.4);display:grid;place-items:center;color:var(--gold)}
+.row small{display:block;font-size:12px;color:var(--muted);margin-bottom:2px}
+.row span{font-size:15px;font-weight:500;line-height:1.35}
+
+.t-title{font-size:13px;color:var(--muted);margin-bottom:12px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:28px}
+.timer div{border:1px solid rgba(201,162,75,.3);background:rgba(0,0,0,.28);border-radius:12px;padding:12px 2px 9px}
+.timer b{display:block;font:700 26px/1 var(--serif);color:var(--gold-l);font-variant-numeric:tabular-nums}
+.timer small{display:block;font-size:12px;color:var(--muted);margin-top:6px}
+
+.btns{display:grid;gap:10px}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px;border-radius:12px;
+  font:500 14px var(--sans);text-decoration:none;cursor:pointer;border:1px solid rgba(201,162,75,.5);color:var(--ivory);background:transparent;transition:transform .2s,background .2s}
+.btn:active{transform:scale(.98)}
+.btn:hover{background:rgba(201,162,75,.12)}
+.btn.gold{background:linear-gradient(135deg,#d9b650,#a37d1c);color:#1b1500;font-weight:600;border:0;box-shadow:0 6px 20px rgba(201,162,75,.28)}
+.btn.gold:hover{background:linear-gradient(135deg,#e6c565,#b48b25)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rsvp{margin-top:28px;padding-top:26px;border-top:1px solid rgba(201,162,75,.2)}
+.rsvp h2{font:700 21px var(--serif);color:var(--gold-l);margin-bottom:6px}
+.rsvp p{font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+.sign{margin-top:34px;font-size:13px;color:var(--muted)}
+.sign strong{display:block;font:700 23px var(--serif);color:var(--gold-l);margin-top:6px}
+
+.pre{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease}
+body.open .pre{opacity:1;transform:none}
+
+/* ---------- Music ---------- */
+.music{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:60;width:54px;height:54px;border-radius:50%;
+  border:1.5px solid var(--gold);background:rgba(7,38,41,.92);color:var(--gold);display:none;place-items:center;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.6)}
+body.open .music{display:grid}
+.music[hidden]{display:none!important}
+.music.on{background:var(--gold);color:var(--night)}
+.music.on svg{animation:spin 7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media (max-width:360px){h1{font-size:38px}.card{padding-inline:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01s!important}
+  #dust{display:none}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<canvas id="dust" aria-hidden="true"></canvas>
+<!-- Музыка встроена в файл. Чтобы заменить: src="music/bg.mp3" и положите свой mp3 в папку music -->
+<audio id="bg" loop preload="auto" src="/dombyra-syrlasu-valsy_(mufm.me).mp3"></audio>
+<!-- Doors -->
+<div class="intro" id="intro">
+  <div class="door l"></div><div class="door r"></div>
+  <div class="seal-wrap">
+    <button class="seal" id="open" aria-label="Очиш / Открыть">
+      <svg viewBox="0 0 60 60" fill="currentColor" aria-hidden="true"><path d="M30 2l5.5 14.5L50 10l-6.5 14.5L58 30l-14.5 5.5L50 50l-14.5-6.5L30 58l-5.5-14.5L10 50l6.5-14.5L2 30l14.5-5.5L10 10l14.5 6.5z"/><circle cx="30" cy="30" r="7" fill="#c9a24b"/></svg>
+    </button>
+    <p class="seal-note">Таклифномани очиш<small>Нажмите, чтобы открыть приглашение</small></p>
+  </div>
+</div>
+
+<button class="music" id="musicBtn" aria-label="Музыка / Music" aria-pressed="false" hidden>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3z"/></svg>
+</button>
+
+<main>
+  <div class="lang pre"><div role="group" aria-label="Тил / Язык">
+    <button data-l="cyr" aria-pressed="true">UZ</button><button data-l="ru" aria-pressed="false">RU</button></div></div>
+
+  <div class="shellwrap">
+  <section class="card" id="shell">
+    <svg class="frame pre" id="frame" aria-hidden="true"></svg>
+    <div class="sub pre" data-t="sub"></div>
+    <h1 class="pre" data-t="title"></h1>
+    <div class="rule pre"><i></i><b></b><i></i></div>
+
+    <p class="greet pre" id="greet"></p>
+    <p class="text pre" data-t="body"></p>
+
+    <div class="info pre">
+      <div class="row">
+        <div class="ico"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+        <div><small data-t="lblDate"></small><span id="date"></span></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div><small data-t="lblPlace"></small><span data-t="place"></span></div>
+      </div>
+    </div>
+
+    <p class="t-title pre" id="tTitle"></p>
+    <div class="timer pre" role="timer" aria-live="off">
+      <div><b id="d">00</b><small data-t="d"></small></div>
+      <div><b id="h">00</b><small data-t="h"></small></div>
+      <div><b id="m">00</b><small data-t="m"></small></div>
+      <div><b id="s">00</b><small data-t="s"></small></div>
+    </div>
+
+    <div class="btns pre">
+      <div class="two">
+        <a class="btn gold" id="yandex" target="_blank" rel="noopener" data-t="yandex"></a>
+        <a class="btn" id="google" target="_blank" rel="noopener">Google Maps</a>
+      </div>
+    </div>
+
+    <div class="rsvp pre" id="rsvp">
+      <h2 data-t="rsvpT"></h2>
+      <p data-t="rsvpP"></p>
+      <div class="btns">
+        <a class="btn gold" id="tg" target="_blank" rel="noopener" data-t="tg" hidden></a>
+        <a class="btn" id="tel" data-t="tel" hidden></a>
+      </div>
+    </div>
+
+    <div class="sign pre"><span data-t="signLead"></span><strong data-t="family"></strong></div>
+  </section>
+  </div>
+</main>
+
+<script>
+/* ===== Шу ерни ўзгартиринг / Меняйте только этот блок ===== */
+const CONFIG = {
+  start: "2026-10-07T10:00:00+05:00",   // время мероприятия (Узбекистан, UTC+5)
+  durationHours: 4,
+  lat: 39.6713889, lng: 66.886,         // 39°40'17.0"N 66°53'09.6"E
+  address: "Samarkand",                 // запасной адрес для карт, если нет координат
+  phone: "",                            // например "+998901234567"
+  telegram: ""                          // имя без @, например "yusupovlar"
+};
+
+const T = {
+  cyr:{
+    sub:"Таклифнома", title:"Наҳор оши",
+    body:"Юсуповлар оиласи фарзандларининг никоҳ тўйи муносабати билан Сизни Наҳор оши дастурхонига таклиф этамиз. Қадамингиз қутлуғ бўлсин!",
+    lblDate:"Сана ва вақт", date:"7 октябрь, 2026 · чоршанба · 10:00",
+    lblPlace:"Манзил", place:"Самарқанд шаҳри, Юсупов Искандар ака хонадони",
+    timer:"Тадбирга қолган вақт", over:"Тадбир бошланди. Хуш келибсиз!",
+    d:"кун", h:"соат", m:"дақиқа", s:"сония",
+    yandex:"Яндекс Харита", cal:"Тақвимга қўшиш",
+    rsvpT:"Келасизми?", rsvpP:"Дастурхонни тайёрлаш учун, илтимос, келишингизни олдиндан билдиринг.",
+    tg:"Телеграмда тасдиқлаш", tel:"Қўнғироқ қилиш",
+    signLead:"Ҳурмат билан", family:"Юсуповлар оиласи",
+    greetN:n=>`Ҳурматли ${n}!`, greet:"Ҳурматли меҳмон!",
+    rsvpMsg:n=>`Ассалому алайкум! ${n||"Мен"} 7 октябрь Наҳор оши маросимига келаман.`,
+    calTitle:"Наҳор оши — Юсуповлар оиласи"
+  },
+  ru:{
+    sub:"Приглашение", title:"Нахор ош",
+    body:"По случаю свадьбы детей семьи Юсуповых приглашаем вас на утренний плов — нахор ош. Будем рады видеть вас за нашим дастарханом!",
+    lblDate:"Дата и время", date:"7 октября 2026 · среда · 10:00",
+    lblPlace:"Адрес", place:"г. Самарканд, дом Юсупова Искандара",
+    timer:"До начала осталось", over:"Мероприятие началось. Добро пожаловать!",
+    d:"дней", h:"часов", m:"минут", s:"секунд",
+    yandex:"Яндекс Карты", cal:"Добавить в календарь",
+    rsvpT:"Вы придёте?", rsvpP:"Чтобы мы успели накрыть дастархан, подтвердите, пожалуйста, ваш приход заранее.",
+    tg:"Подтвердить в Telegram", tel:"Позвонить",
+    signLead:"С уважением", family:"Семья Юсуповых",
+    greetN:n=>`Дорогой(ая) ${n}!`, greet:"Дорогие гости!",
+    rsvpMsg:n=>`Здравствуйте! ${n||"Я"} приду на нахор ош 7 октября.`,
+    calTitle:"Нахор ош — семья Юсуповых"
+  }
+};
+
+const $ = id => document.getElementById(id);
+const guest = (new URLSearchParams(location.search).get("guest")||"").trim().slice(0,40);
+let lang = "cyr";
+lang = (navigator.language||"").toLowerCase().startsWith("ru") ? "ru" : "cyr";
+try{ const s=localStorage.getItem("lang3"); if(T[s]) lang=s; }catch(e){}
+
+function mapLinks(){
+  const q = (CONFIG.lat!=null && CONFIG.lng!=null) ? `${CONFIG.lat},${CONFIG.lng}` : encodeURIComponent(CONFIG.address);
+  $("google").href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  $("yandex").href = (CONFIG.lat!=null && CONFIG.lng!=null)
+    ? `https://yandex.com/maps/?pt=${CONFIG.lng},${CONFIG.lat}&z=17&l=map`
+    : `https://yandex.com/maps/?text=${q}`;
+}
+
+function render(l){
+  lang = l; const t = T[l];
+  document.documentElement.lang = l==="ru" ? "ru" : "uz";
+  document.querySelectorAll("[data-t]").forEach(el=>{ if(t[el.dataset.t]) el.textContent = t[el.dataset.t]; });
+  $("date").textContent = t.date;
+  $("greet").textContent = guest ? t.greetN(guest) : t.greet;
+  $("tTitle").textContent = t.timer;
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.l===l));
+  if(CONFIG.telegram){ $("tg").hidden=false; $("tg").href=`https://t.me/${CONFIG.telegram}?text=${encodeURIComponent(t.rsvpMsg(guest))}`; }
+  if(CONFIG.phone){ $("tel").hidden=false; $("tel").href=`tel:${CONFIG.phone}`; }
+  if(!CONFIG.telegram && !CONFIG.phone) $("rsvp").hidden = true;
+  tick();
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{ render(b.dataset.l); try{localStorage.setItem("lang3",b.dataset.l)}catch(e){} });
+
+/* Countdown */
+const target = new Date(CONFIG.start).getTime();
+function tick(){
+  const diff = target - Date.now();
+  if(diff<=0){ $("tTitle").textContent = T[lang].over; ["d","h","m","s"].forEach(k=>$(k).textContent="00"); return; }
+  const p = n => String(n).padStart(2,"0");
+  $("d").textContent = p(Math.floor(diff/864e5));
+  $("h").textContent = p(Math.floor(diff%864e5/36e5));
+  $("m").textContent = p(Math.floor(diff%36e5/6e4));
+  $("s").textContent = p(Math.floor(diff%6e4/1e3));
+}
+setInterval(tick,1000);
+
+/* Music with fade */
+const audio = $("bg"), mBtn = $("musicBtn"); let fadeT, playing=false; const MAXV=.45;
+function fade(to, done){
+  clearInterval(fadeT);
+  fadeT = setInterval(()=>{
+    const v = audio.volume, step = to>v?.02:-.04;
+    audio.volume = Math.min(1,Math.max(0,v+step));
+    if(Math.abs(audio.volume-to)<.03){ audio.volume=to; clearInterval(fadeT); done&&done(); }
+  },80);
+}
+function play(){ audio.volume=0; audio.play().then(()=>{ playing=true; ui(); fade(MAXV); }).catch(()=>{}); }
+function pause(){ playing=false; ui(); fade(0,()=>audio.pause()); }
+function ui(){ mBtn.classList.toggle("on",playing); mBtn.setAttribute("aria-pressed",playing); }
+mBtn.onclick = ()=> playing ? pause() : play();
+audio.addEventListener("error",()=>{ mBtn.hidden=true; });
+audio.addEventListener("loadedmetadata",()=>{ mBtn.hidden=false; });
+document.addEventListener("visibilitychange",()=>{ if(document.hidden && playing) audio.pause(); else if(playing) audio.play().catch(()=>{}); });
+
+/* One continuous arch-shaped card (no seams) */
+(function(){
+  const shell=$("shell"), fr=$("frame");
+  function build(){
+    const w=shell.offsetWidth, h=shell.offsetHeight, ch=w*120/320, R=22;
+    const X=v=>(v*w/320).toFixed(1), Y=v=>(v*ch/120).toFixed(1);
+    const outer=`M.5 ${h-R}V${Y(76)}C.5 ${Y(38)} ${X(112)} ${Y(26)} ${X(160)} ${Y(3)}C${X(208)} ${Y(26)} ${w-.5} ${Y(38)} ${w-.5} ${Y(76)}V${h-R}Q${w-.5} ${h-.5} ${w-R} ${h-.5}H${R}Q.5 ${h-.5} .5 ${h-R}Z`;
+    const r2=14, i1=X(13), i2=(w-13*w/320).toFixed(1);
+    const inner=`M${i1} ${h-r2-12}V${Y(82)}C${i1} ${Y(54)} ${X(118)} ${Y(42)} ${X(160)} ${Y(22)}C${X(202)} ${Y(42)} ${i2} ${Y(54)} ${i2} ${Y(82)}V${h-r2-12}Q${i2} ${h-12} ${(i2-r2)} ${h-12}H${(+i1+r2)}Q${i1} ${h-12} ${i1} ${h-r2-12}Z`;
+    shell.style.clipPath=`path('${outer}')`;
+    fr.setAttribute("viewBox",`0 0 ${w} ${h}`);
+    const cx=w/2, cy=ch*80/120, pts=[];
+    for(let i=0;i<16;i++){ const r=i%2?6.5:17, a=i*Math.PI/8-Math.PI/2; pts.push((cx+r*Math.cos(a)).toFixed(1)+","+(cy+r*Math.sin(a)).toFixed(1)); }
+    fr.innerHTML=
+      `<path d="${outer}" fill="none" stroke="#c9a24b" stroke-opacity=".75"/>`+
+      `<path d="${inner}" fill="none" stroke="#c9a24b" stroke-opacity=".28"/>`+
+      `<polygon points="${pts.join(" ")}" stroke="#f1dc9a" stroke-opacity=".85" stroke-width="1.2" fill="rgba(201,162,75,.14)"/>`+
+      `<circle cx="${cx}" cy="${cy}" r="3" fill="#f1dc9a"/>`+
+      `<path d="M${cx} ${Y(3)}l3.5 6-3.5 6-3.5-6z" fill="#f1dc9a"/>`;
+  }
+  new ResizeObserver(build).observe(shell); build();
+})();
+
+/* Open doors */
+$("open").onclick = ()=>{
+  $("intro").classList.add("opening");
+  document.body.classList.add("open");
+  document.querySelectorAll(".pre").forEach((el,i)=>el.style.transitionDelay = (0.9+i*0.1)+"s");
+  play();
+  setTimeout(()=>{ $("intro").hidden = true; document.querySelectorAll(".pre").forEach(el=>el.style.transitionDelay="0s"); },2000);
+};
+
+/* Floating moons, stars and gold dust */
+(function(){
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  const c=$("dust"), x=c.getContext("2d"); let W,H,R=1;
+  function size(){ R=Math.min(devicePixelRatio||1,2); W=c.width=innerWidth*R; H=c.height=innerHeight*R; }
+  size(); addEventListener("resize",size);
+  const rnd=(a,b)=>a+Math.random()*(b-a);
+  const items=[];
+  for(let i=0;i<20;i++) items.push({k:"dust",x:Math.random(),y:Math.random(),r:rnd(.4,1.6),v:rnd(.02,.06),a:rnd(.2,.6),p:rnd(0,6)});
+  for(let i=0;i<14;i++) items.push({k:"star",x:Math.random(),y:Math.random(),r:rnd(3,7),v:rnd(.012,.03),a:rnd(.5,.9),p:rnd(0,6),tw:rnd(.8,1.8)});
+  for(let i=0;i<4;i++)  items.push({k:"moon",x:(i+.5)/4+rnd(-.1,.1),y:rnd(.05,.95),r:rnd(11,18),v:rnd(.006,.014),a:rnd(.6,.85),p:rnd(0,6),rot:rnd(-.5,.5)});
+  function star(cx,cy,r){
+    x.beginPath();
+    for(let i=0;i<8;i++){ const ang=i*Math.PI/4-Math.PI/2, rr=i%2?r*.28:r;
+      x[i?"lineTo":"moveTo"](cx+Math.cos(ang)*rr, cy+Math.sin(ang)*rr); }
+    x.closePath(); x.fill();
+  }
+  function moon(cx,cy,r,rot){
+    const d=r*.35, r2=r*.95, xi=(d*d+r*r-r2*r2)/(2*d), yi=Math.sqrt(r*r-xi*xi);
+    x.save(); x.translate(cx,cy); x.rotate(rot);
+    x.beginPath();
+    x.arc(0,0,r,Math.atan2(-yi,xi),Math.atan2(yi,xi),true);
+    x.arc(d,0,r2,Math.atan2(yi,xi-d),Math.atan2(-yi,xi-d)+Math.PI*2,false);
+    x.closePath(); x.fill();
+    x.restore();
+  }
+  let last=0;
+  (function loop(t){
+    const dt=Math.min(t-last,60)/1000; last=t;
+    x.clearRect(0,0,W,H);
+    x.fillStyle="#f1dc9a";
+    for(const p of items){
+      p.y-=p.v*dt; if(p.y<-.05){ p.y=1.05; p.x=Math.random(); }
+      const bob=Math.sin(t/1800+p.p), sway=Math.cos(t/2600+p.p);
+      const px=p.x*W+sway*10*R, py=p.y*H+bob*8*R;
+      if(p.k==="dust"){ x.shadowBlur=0; x.globalAlpha=p.a*(.6+.4*Math.sin(t/900+p.p)); x.beginPath(); x.arc(px,py,p.r*R,0,7); x.fill(); }
+      else if(p.k==="star"){ x.shadowColor="#f1dc9a"; x.shadowBlur=8*R; x.globalAlpha=p.a*(.55+.45*Math.sin(t/(700*p.tw)+p.p)); star(px,py,p.r*R*(.85+.15*Math.sin(t/900+p.p))); }
+      else { x.shadowColor="#f1dc9a"; x.shadowBlur=14*R; x.globalAlpha=p.a; moon(px,py,p.r*R,p.rot+bob*.18); }
+    }
+    x.globalAlpha=1; x.shadowBlur=0;
+    requestAnimationFrame(loop);
+  })(0);
+})();
+
+mapLinks(); render(lang);
+</script>
+</body>
+</html>
